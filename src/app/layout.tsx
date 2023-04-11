@@ -20,6 +20,7 @@ export default function RootLayout({
     <html className={`${montserrat.variable} scroll-smooth`} lang="pt-br">
       <head>
         <title>Scientific Liguagem - Precisamente o que você quer dizer</title>
+        <meta name="description" content="A Scientific atua desde 1998 na revisão, tradução, edição, padronização e formatação de textos em português e inglês nas Ciências da Saúde e compreende duas entidades corporativas — uma voltada para produção textual (Scientific Linguagem) e outra para projetos editoriais (Editora Scientific)." />
       </head>
       <body className="font-montserrat" >{children}</body>
     </html>

@@ -49,9 +49,9 @@ const Footer = () => {
         </div>
       </div>
       <div className="mx-auto mt-10 max-w-fit">
-        <span className="text-sm text-center text-white">
+        <span className="text-sm text-center text-white block w-full pb-2">
           © Scientific Linguagem. Todos os direitos reservados. Desenvolvido por{" "}
-          <a className="text-sciblue" href="https://vinceveras.com/">
+          <a className="text-sciblue ml-1" href="https://vinceveras.com/">
             Vince Veras
           </a>
         </span>
