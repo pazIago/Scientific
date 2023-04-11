@@ -1,124 +1,210 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import IMG1 from "../../public/assets/BLOCO_1.webp";
+import Image from "next/image";
+import Title from "@/components/Global/Title";
+import InstagramFeed from "@/components/Instagram";
+import INSvg from "@/components/Global/instagram";
+import Stripe from "@/components/Global/Stripe";
+import InfoBlock from "@/components/Infoblock";
+import Bloco2 from "../../public/assets/BLOCO_2.webp";
+import Bloco3 from "../../public/assets/BLOCO_3.webp";
+import Bloco4 from "../../public/assets/BLOCO_4.webp";
+import Bloco5 from "../../public/assets/BLOCO_5.webp";
+import Bloco6 from "../../public/assets/BLOCO_6.webp";
+import ContactForm from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      <Header />
+      <Hero />
+      <section
+        className="max-w-[1140px] mx-auto max-md:pt-24 max-md:-mt-24 my-20 -mt-20 pt-40 grid grid-cols-2 max-md:grid-cols-1 gap-8 max-md:gap-0"
+        id="sobre"
+      >
+        <div className="relative block min-h-[210px]">
+          <Image className="object-cover " src={IMG1} fill alt="" />
         </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Find in-depth information about Next.js features and API.
+        <div className="pt-10 pl-8 pr-4 max-md:px-4 [&>h2]:mb-8">
+          <Title>Sobre a Scientific</Title>
+          <p>
+            A <strong>Scientific</strong> atua desde 1998 na revisão, tradução,
+            edição, padronização e formatação de textos em português e inglês
+            nas Ciências da Saúde e compreende duas entidades corporativas — uma
+            voltada para produção textual (<strong>Scientific Linguagem</strong>
+            ) e outra para projetos editoriais (
+            <strong>Editora Scientific</strong>). Nosso trabalho envolve:
           </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
+          <ul className="grid gap-4 my-4 list-disc list-outside [&>li]:ml-8">
+            <li>
+              Apoio em todas as etapas de preparação de artigos científicos para
+              submissão em periódicos especializados, incluindo adequação do
+              texto (tradução, revisão ou edição, dependendo das necessidades de
+              cada projeto/cliente) até formatação de acordo com as normas do
+              periódico, passando por montagem de bibliotecas em software de
+              gestão de referências, coordenação da submissão e acompanhamento
+              do trabalho de resposta aos pareceres.
+            </li>
+            <li>
+              Revisão, tradução, edição, padronização e formatação de
+              protocolos, diretrizes, relatórios e textos institucionais no
+              contexto das Ciências da Saúde.
+            </li>
+            <li className="[&>a]:text-sciblue [&>a]:font-medium">
+              Apoio aos projetos editoriais de revistas científicas, com mix
+              variado de serviços, incluindo secretaria editorial, tradução,
+              revisão, copidescagem e padronização de artigos. Entre as revistas{" "}
+              <a href="https://www.bjp.org.br/">
+                <em>Brazilian Journal of Psychiatry</em>
+              </a>
+              , o{" "}
+              <a href="https://www.jvascbras.org/">
+                <em>Jornal Vascular Brasileiro</em>
+              </a>
+              , o{" "}
+              <a href="https://jfootankle.com/">
+                <em>Journal of the Foot & Ankle</em>
+              </a>
+              , os{" "}
+              <a href="https://abccardiol.org/">
+                <em>Arquivos Brasileiros de Cardiologia</em>
+              </a>
+              , o{" "}
+              <a href="https://ijcscardiol.org/">
+                <em>International Journal of Cardiovascular Sciences</em>
+              </a>
+              , a{" "}
+              <a href="https://www.mdpi.com/journal/geriatrics">
+                <em>Geriatrics</em>
+              </a>
+              , a{" "}
+              <a href="https://ggaging.com/">
+                <em>Geriatrics, Gerontology and Ageing</em>
+              </a>{" "}
+              e a{" "}
+              <a href="https://www.rbmt.org.br/">
+                <em>Revista Brasileira de Medicina do Trabalho</em>
+              </a>
+              .
+            </li>
+          </ul>
+          <p>
+            A equipe da Scientific inclui profissionais de texto especializados
+            nas Ciências da Saúde (tradutores, jornalistas, bibliotecária),
+            apoio administrativo e parceiros com formação em Medicina e outras
+            áreas da saúde, Estatística, Epidemiologia, Design Gráfico e
+            secretaria para atuação em projetos específicos.
           </p>
-        </a>
-
+        </div>
+      </section>
+      <section
+        id="insta"
+        className="max-w-[1140px] mx-auto my-14 px-4 [&>h2]:pb-8"
+      >
+        <Title hasDetail>Últimas</Title>
+        <InstagramFeed />
         <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+          className="flex items-center px-3 text-white transition-all rounded-md py-[6px] gap-2 w-fit mx-auto mt-8 bg-sciblue hover:scale-110"
+          href="https://www.instagram.com/scientific_linguagem/"
         >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Explore the Next.js 13 playground.
-          </p>
+          <INSvg /> Siga-nos no Instagram
         </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+      </section>
+      <section
+        id="servicos"
+        className="pt-40 my-20 -mt-20 max-md:pt-24 max-md:-mt-24"
+      >
+        <Stripe text="Nossos Serviços" />
+        <div className="max-w-[1140px] mx-auto my-20 grid gap-8 max-md:mt-0">
+          <InfoBlock title="Edição" image={Bloco2} position="left">
+            {" "}
+            <p>
+              A edição envolve reescritura ou reestruturação do conteúdo com
+              identificação de lacunas na exposição lógica de ideias. Vale notar
+              que a edição pode ser feita tanto durante o processo de tradução
+              quanto a partir de um texto já escrito na língua de publicação
+              (por exemplo, inglês).
+            </p>{" "}
+            <p>
+              No caso de tradução de artigos científicos, o texto de partida em
+              português frequentemente deixará de existir, passando o texto em
+              inglês a ser o conteúdo original. Nesses casos, a tradução
+              acompanhada de edição pode ser vantajosa para a produção de um
+              texto bem ajustado aos seus propósitos finais.
+            </p>{" "}
+            <p>
+              O trabalho de edição envolve participação ativa dos autores para
+              esclarecimento de dúvidas e aprovação e compreende ao menos duas
+              rodadas de ajuste textual.
+            </p>
+          </InfoBlock>
+          <InfoBlock title="Tradução" image={Bloco3} position="right">
+            {" "}
+            <p>
+              A Scientific é especializada na tradução para português, inglês e
+              espanhol de diversos tipos de texto nas Ciências da Saúde: artigos
+              para submissão em periódicos revisados por pares, protocolos,
+              diretrizes, relatórios e textos institucionais, entre outros.
+            </p>
+          </InfoBlock>
+          <InfoBlock title="Revisão" image={Bloco4} position="left">
+            <p>
+              A equipe de revisão utiliza ferramentas consagradas para revisão
+              ortográfica e gramatical em português e inglês. A equipe trabalha
+              em sintonia utilizando checklists desenvolvidas pela Scientific,
+              que são atualizadas periodicamente e podem ser adaptadas para
+              projetos específicos.
+            </p>
+            <p>
+              Os textos revisados são entregues ao cliente em duas versões: uma
+              com marcação de alterações e comentários e outra limpa. O fluxo
+              tradicional envolve revisão e entrega dos arquivos, retorno do
+              cliente, ajustes e entrega das versões finais para aprovação.
+            </p>
+          </InfoBlock>
+          <InfoBlock title="Formatação" position="right" image={Bloco5}>
+            <p>
+              A formatação é a adequação do artigo científico às normas da
+              revista para a qual ele será submetido. A atividade de formatação
+              envolve padronização do texto com tipo e tamanho de fonte,
+              espaçamentos, verificação de limites de palavras/caracteres,
+              apresentação de tabelas e materiais suplementares, edição de
+              figuras e forma de apresentação dos dados dos autores.
+            </p>
+            <p>
+              Envolve ainda a conferência e formatação das referências e a
+              montagem de bibliotecas em software de gerenciamento de
+              referências.
+            </p>
+          </InfoBlock>
+          <InfoBlock title="submissão" position="left" image={Bloco6}>
+            <p>
+              O trabalho de submissão consiste na realização dos cadastros do
+              autor e do artigo no sistema de peer review do periódico
+              científico e no envio dos arquivos finais a serem avaliados pela
+              revista.
+            </p>
+            <p>
+              Durante o processo de preenchimento dos cadastros, surgem inúmeras
+              questões que precisam ser verificadas juntos aos autores, como
+              dados pessoais e profissionais, termos de classificação, indicação
+              de revisores e outras informações.
+            </p>
+          </InfoBlock>
+        </div>
+      </section>
+      <section
+        id="contato"
+        className="pt-40 my-20 -mt-20 max-md:pt-24 max-md:-mt-24"
+      >
+        <Stripe text="Entre em Contato" />
+        <div className="text-center max-w-[1140px] mx-auto mt-10 px-4">
+          <ContactForm />
+        </div>
+      </section>
+      <Footer />
+    </>
+  );
 }
