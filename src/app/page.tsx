@@ -99,11 +99,12 @@ export default function Home() {
           </p>
         </div>
       </section>
-      {/* <section
+      <section
         id="insta"
         className="max-w-[1140px] mx-auto my-14 px-4 [&>h2]:pb-8"
       >
         <Title hasDetail>Últimas</Title>
+        {/* @ts-expect-error Server Component */}
         <InstagramFeed />
         <a
           className="flex items-center px-3 text-white transition-all rounded-md py-[6px] gap-2 w-fit mx-auto mt-8 bg-sciblue hover:scale-110"
@@ -111,7 +112,7 @@ export default function Home() {
         >
           <INSvg /> Siga-nos no Instagram
         </a>
-      </section> */}
+      </section>
       <section
         id="servicos"
         className="pt-40 my-20 -mt-20 max-md:pt-24 max-md:-mt-24"
