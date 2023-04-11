@@ -19,12 +19,9 @@ async function getData() {
   return res.json();
 }
 
-
-
-const InstagramFeed = async function InstagramFeed() {
+export default async function InstagramFeed() {
   const { data } = await getData();
-  console.log(data);
-
+ 
   return (
     <div className="flex flex-wrap justify-center w-full">
       {data
@@ -38,6 +35,4 @@ const InstagramFeed = async function InstagramFeed() {
         ))}
     </div>
   );
-};
-
-export default InstagramFeed;
+}
