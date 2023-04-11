@@ -1,19 +1,14 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import IMG1 from "../../public/assets/BLOCO_1.webp";
 import Image from "next/image";
 import Title from "@/components/Global/Title";
 import InstagramFeed from "@/components/Instagram";
 import INSvg from "@/components/Global/instagram";
 import Stripe from "@/components/Global/Stripe";
 import InfoBlock from "@/components/Infoblock";
-import Bloco2 from "../../public/assets/BLOCO_2.webp";
-import Bloco3 from "../../public/assets/BLOCO_3.webp";
-import Bloco4 from "../../public/assets/BLOCO_4.webp";
-import Bloco5 from "../../public/assets/BLOCO_5.webp";
-import Bloco6 from "../../public/assets/BLOCO_6.webp";
 import ContactForm from "@/components/Contact";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -25,7 +20,12 @@ export default function Home() {
         id="sobre"
       >
         <div className="relative block min-h-[210px]">
-          <Image className="object-cover " src={IMG1} fill alt="" />
+          <Image
+            className="object-cover "
+            src={"/assets/BLOCO_1.webp"}
+            fill
+            alt=""
+          />
         </div>
         <div className="pt-10 pl-8 pr-4 max-md:px-4 [&>h2]:mb-8">
           <Title>Sobre a Scientific</Title>
@@ -56,37 +56,37 @@ export default function Home() {
               Apoio aos projetos editoriais de revistas científicas, com mix
               variado de serviços, incluindo secretaria editorial, tradução,
               revisão, copidescagem e padronização de artigos. Entre as revistas{" "}
-              <a href="https://www.bjp.org.br/">
+              <Link href="https://www.bjp.org.br/">
                 <em>Brazilian Journal of Psychiatry</em>
-              </a>
+              </Link>
               , o{" "}
-              <a href="https://www.jvascbras.org/">
+              <Link href="https://www.jvascbras.org/">
                 <em>Jornal Vascular Brasileiro</em>
-              </a>
+              </Link>
               , o{" "}
-              <a href="https://jfootankle.com/">
+              <Link href="https://jfootankle.com/">
                 <em>Journal of the Foot & Ankle</em>
-              </a>
+              </Link>
               , os{" "}
-              <a href="https://abccardiol.org/">
+              <Link href="https://abccardiol.org/">
                 <em>Arquivos Brasileiros de Cardiologia</em>
-              </a>
+              </Link>
               , o{" "}
-              <a href="https://ijcscardiol.org/">
+              <Link href="https://ijcscardiol.org/">
                 <em>International Journal of Cardiovascular Sciences</em>
-              </a>
+              </Link>
               , a{" "}
-              <a href="https://www.mdpi.com/journal/geriatrics">
+              <Link href="https://www.mdpi.com/journal/geriatrics">
                 <em>Geriatrics</em>
-              </a>
+              </Link>
               , a{" "}
-              <a href="https://ggaging.com/">
+              <Link href="https://ggaging.com/">
                 <em>Geriatrics, Gerontology and Ageing</em>
-              </a>{" "}
+              </Link>{" "}
               e a{" "}
-              <a href="https://www.rbmt.org.br/">
+              <Link href="https://www.rbmt.org.br/">
                 <em>Revista Brasileira de Medicina do Trabalho</em>
-              </a>
+              </Link>
               .
             </li>
           </ul>
@@ -99,27 +99,31 @@ export default function Home() {
           </p>
         </div>
       </section>
-      {/* <section
+      <section
         id="insta"
         className="max-w-[1140px] mx-auto my-14 px-4 [&>h2]:pb-8"
       >
-        <Title hasDetail>Últimas</Title> */}
-        {/* @ts-expect-error Server Component */}
-        {/* <InstagramFeed />
-        <a
+        <Title hasDetail>Últimas</Title>
+
+        <InstagramFeed />
+        <Link
           className="flex items-center px-3 text-white transition-all rounded-md py-[6px] gap-2 w-fit mx-auto mt-8 bg-sciblue hover:scale-110"
           href="https://www.instagram.com/scientific_linguagem/"
         >
           <INSvg /> Siga-nos no Instagram
-        </a>
-      </section> */}
+        </Link>
+      </section>
       <section
         id="servicos"
         className="pt-40 my-20 -mt-20 max-md:pt-24 max-md:-mt-24"
       >
         <Stripe text="Nossos Serviços" />
         <div className="max-w-[1140px] mx-auto my-20 grid gap-8 max-md:mt-0">
-          <InfoBlock title="Edição" image={Bloco2} position="left">
+          <InfoBlock
+            title="Edição"
+            image={"/assets/BLOCO_2.webp"}
+            position="left"
+          >
             {" "}
             <p>
               A edição envolve reescritura ou reestruturação do conteúdo com
@@ -141,7 +145,11 @@ export default function Home() {
               rodadas de ajuste textual.
             </p>
           </InfoBlock>
-          <InfoBlock title="Tradução" image={Bloco3} position="right">
+          <InfoBlock
+            title="Tradução"
+            image={"/assets/BLOCO_3.webp"}
+            position="right"
+          >
             {" "}
             <p>
               A Scientific é especializada na tradução para português, inglês e
@@ -150,7 +158,11 @@ export default function Home() {
               diretrizes, relatórios e textos institucionais, entre outros.
             </p>
           </InfoBlock>
-          <InfoBlock title="Revisão" image={Bloco4} position="left">
+          <InfoBlock
+            title="Revisão"
+            image={"/assets/BLOCO_4.webp"}
+            position="left"
+          >
             <p>
               A equipe de revisão utiliza ferramentas consagradas para revisão
               ortográfica e gramatical em português e inglês. A equipe trabalha
@@ -165,7 +177,11 @@ export default function Home() {
               cliente, ajustes e entrega das versões finais para aprovação.
             </p>
           </InfoBlock>
-          <InfoBlock title="Formatação" position="right" image={Bloco5}>
+          <InfoBlock
+            title="Formatação"
+            position="right"
+            image={"/assets/BLOCO_5.webp"}
+          >
             <p>
               A formatação é a adequação do artigo científico às normas da
               revista para a qual ele será submetido. A atividade de formatação
@@ -180,7 +196,11 @@ export default function Home() {
               referências.
             </p>
           </InfoBlock>
-          <InfoBlock title="submissão" position="left" image={Bloco6}>
+          <InfoBlock
+            title="submissão"
+            position="left"
+            image={"/assets/BLOCO_6.webp"}
+          >
             <p>
               O trabalho de submissão consiste na realização dos cadastros do
               autor e do artigo no sistema de peer review do periódico

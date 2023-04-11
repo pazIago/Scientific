@@ -1,38 +1,44 @@
+import { useState, useEffect, useCallback } from "react";
 import Frame from "./Frame";
+import axios from "axios";
 
-interface instagramPost {
+interface InstagramPost {
   id: string;
   permalink: string;
   media_url: string;
   thumbnail_url?: string;
 }
 
-async function getData() {
-  const res = await fetch(
-    "https://graph.instagram.com/me/media?fields=id,permalink,media_url,thumbnail_url,caption&access_token=IGQVJVdWRxNFp3Y0JSbV83RVY1a3RwR3pjTEx6d0NIWGNQVTBleVpJclBXdk9GTW1oRzFiZAi1mTTFnS0JVQ0w2M1hvZA1NMcm1mLTJwLXZA0Y2RnYWh5UkN5TGJ6NElxZAlRSbXhZAbzdBckU3Y0tiSEtIagZDZD"
-  );
+export default function InstagramFeed() {
+  const [data, setData] = useState<InstagramPost[]>([]);
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
+  const getData = useCallback(async () => {
+    try {
+      const { data } = await axios.get<InstagramPost[]>(
+        "https://graph.instagram.com/me/media?fields=id,permalink,media_url,thumbnail_url,caption&access_token=IGQVJVdWRxNFp3Y0JSbV83RVY1a3RwR3pjTEx6d0NIWGNQVTBleVpJclBXdk9GTW1oRzFiZAi1mTTFnS0JVQ0w2M1hvZA1NMcm1mLTJwLXZA0Y2RnYWh5UkN5TGJ6NElxZAlRSbXhZAbzdBckU3Y0tiSEtIagZDZD"
+      );
+      setData(data);
+    } catch (err) {
+      console.error(err, "Failed to fetch data");
+    }
+  }, []);
 
-  return res.json();
-}
+  useEffect(() => {
+    getData();
+  }, []);
 
-export default async function InstagramFeed() {
-  const { data } = await getData();
- 
   return (
     <div className="flex flex-wrap justify-center w-full">
-      {data
-        .slice(0, 3)
-        .map(({ id, permalink, media_url, thumbnail_url }: instagramPost) => (
-          <Frame
-            key={id}
-            permalink={permalink}
-            media_url={thumbnail_url ? thumbnail_url : media_url}
-          />
-        ))}
+      {data.length > 0 &&
+        data
+          .slice(0, 3)
+          .map(({ id, permalink, media_url, thumbnail_url }) => (
+            <Frame
+              key={id}
+              permalink={permalink}
+              media_url={thumbnail_url ? thumbnail_url : media_url}
+            />
+          ))}
     </div>
   );
 }

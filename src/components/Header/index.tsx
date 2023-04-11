@@ -1,4 +1,3 @@
-import React from "react";
 import MenuItem from "./MenuItem";
 import SocialIcon from "./SocialIcon";
 import FBSvg from "../Global/facebook";
