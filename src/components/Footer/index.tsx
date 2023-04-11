@@ -1,12 +1,16 @@
 import React from "react";
 import Logo from "../Global/Logo";
+import SocialIcon from "../Header/SocialIcon";
+import FBSvg from "../Global/facebook";
+import INSvg from "../Global/instagram";
+import LKSvg from "../Global/linkedin";
 
 const Footer = () => {
   return (
     <footer className="bg-[#395962]">
-      <div className="max-w-[1140px] py-16">
-        <div className="flex flex-col gap-1 text-sm text-white">
-          <div className="relative mb-2 w-[204px] h-[44px]">
+      <div className="max-w-[1140px] mx-auto px-4 py-16 flex flex-wrap max-md:grid max-md:gap-6 max-md:justify-center justify-between">
+        <div className="flex flex-col gap-1 text-sm text-white max-md:mb-8 max-md:items-center">
+          <div className="relative mb-2 w-[204px] h-[44px] ">
             <Logo className="object-cover" color="pb" />
           </div>
           <span>Rua João Abbot, 109</span>
@@ -15,13 +19,43 @@ const Footer = () => {
             <strong>Telefone: (51) 3012.0575 / (51) 99977.3601</strong>
           </span>
         </div>
-        <div></div>
-        <div></div>
+        <div className="flex flex-col items-center justify-start">
+          <span className="mb-2 text-white uppercase">
+            <strong>Siga a Scientific</strong>
+          </span>
+          <div className="flex justify-between gap-2">
+            <SocialIcon link="https://www.facebook.com/ScientificLinguagem/">
+              <FBSvg />
+            </SocialIcon>
+            <SocialIcon link="https://www.facebook.com/ScientificLinguagem/">
+              <INSvg />
+            </SocialIcon>
+            <SocialIcon link="https://www.facebook.com/ScientificLinguagem/">
+              <LKSvg />
+            </SocialIcon>
+          </div>
+        </div>
+        <div className="flex flex-col items-center">
+          {" "}
+          <span className="mb-2 text-white uppercase">
+            <strong>Trabalhe Conosco</strong>
+          </span>{" "}
+          <a
+            className="px-6 py-3 text-center text-white transition-all bg-sciblue min-w-fit hover:scale-105"
+            href="mailto:joaobrum@scientific.com.br"
+          >
+            Mande seu currículo
+          </a>
+        </div>
       </div>
-      <span>
-        © Scientific Linguagem. Todos os direitos reservados. Desenvolvido por{" "}
-        <a href="https://vinceveras.com/">Vince Veras</a>
-      </span>
+      <div className="mx-auto mt-10 max-w-fit">
+        <span className="text-sm text-center text-white">
+          © Scientific Linguagem. Todos os direitos reservados. Desenvolvido por{" "}
+          <a className="text-sciblue" href="https://vinceveras.com/">
+            Vince Veras
+          </a>
+        </span>
+      </div>
     </footer>
   );
 };
