@@ -1,4 +1,3 @@
-import React from "react";
 import Frame from "./Frame";
 
 interface instagramPost {
@@ -20,17 +19,10 @@ async function getData() {
   return res.json();
 }
 
-import React from 'react'
-
-const index = () => {
-  return (
-    <div>index</div>
-  )
-}
 
 
-const InstagramFeed = () => {
-  async const { data } = await getData();
+const InstagramFeed = async function InstagramFeed() {
+  const { data } = await getData();
   console.log(data);
 
   return (
