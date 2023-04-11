@@ -99,7 +99,7 @@ export default function Home() {
           </p>
         </div>
       </section>
-      {/* <section
+      {/* <section 
         id="insta"
         className="max-w-[1140px] mx-auto my-14 px-4 [&>h2]:pb-8"
       >
