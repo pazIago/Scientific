@@ -15,9 +15,6 @@ interface InstagramPost {
 
 export default function InstagramFeed() {
   const [data, setData] = useState<Post[]>([]);
-
-  console.log(data);
-
   const getData = useCallback(async () => {
     try {
       const { data: response } = await axios.get<InstagramPost>(
