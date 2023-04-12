@@ -9,6 +9,7 @@ import InfoBlock from "@/components/Infoblock";
 import ContactForm from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import { Form } from "@/components/Form";
 
 export default function Home() {
   return (
@@ -223,6 +224,7 @@ export default function Home() {
         <Stripe text="Entre em Contato" />
         <div className="text-center max-w-[1140px] mx-auto mt-10 px-4">
           <ContactForm />
+          <Form />
         </div>
       </section>
       <Footer />
