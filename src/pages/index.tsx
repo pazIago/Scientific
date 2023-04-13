@@ -10,8 +10,22 @@ import ContactForm from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import { Form } from "@/components/Form";
+import type { GetStaticProps } from "next";
+import axios from "axios";
 
-export default function Home() {
+export type Post = {
+  id: string;
+  permalink: string;
+  media_url: string;
+  thumbnail_url?: string;
+};
+
+interface InstagramProps {
+  data: Post[];
+}
+
+export default function Home({ data }: InstagramProps) {
+  console.log(data);
   return (
     <>
       <Header />
@@ -106,7 +120,7 @@ export default function Home() {
       >
         <Title hasDetail>Últimas</Title>
 
-        <InstagramFeed />
+        <InstagramFeed posts={data} />
         <Link
           className="flex items-center px-3 text-white transition-all rounded-md py-[6px] gap-2 w-fit mx-auto mt-8 bg-sciblue hover:scale-110"
           href="https://www.instagram.com/scientific_linguagem/"
@@ -231,3 +245,25 @@ export default function Home() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps<InstagramProps> = async () => {
+  try {
+    const { data: response } = await axios.get<InstagramProps>(
+      "https://graph.instagram.com/me/media?fields=id,permalink,media_url,thumbnail_url,caption&access_token=IGQVJVdWRxNFp3Y0JSbV83RVY1a3RwR3pjTEx6d0NIWGNQVTBleVpJclBXdk9GTW1oRzFiZAi1mTTFnS0JVQ0w2M1hvZA1NMcm1mLTJwLXZA0Y2RnYWh5UkN5TGJ6NElxZAlRSbXhZAbzdBckU3Y0tiSEtIagZDZD"
+    );
+    return {
+      props: {
+        data: response.data,
+      },
+      revalidate: 60 * 60 * 24, // 24 hours
+    };
+  } catch (err) {
+    console.error(err, "Failed to fetch data");
+    return {
+      props: {
+        data: [],
+      },
+      revalidate: 60, // 1 minute
+    };
+  }
+};
