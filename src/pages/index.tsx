@@ -236,7 +236,8 @@ export default function Home({ data }: InstagramProps) {
         className="pt-40 my-20 -mt-20 max-md:pt-24 max-md:-mt-24"
       >
         <Stripe text="Entre em Contato" />
-        <div className="text-center max-w-[1140px] mx-auto mt-10 px-4">
+        <ContactForm />
+        {/* <div className="text-center max-w-[1140px] mx-auto mt-10 px-4">
           <p className="mb-8">
             Fale conosco para solicitar um orçamento ou contratar algum serviço.
           </p>
@@ -255,7 +256,7 @@ export default function Home({ data }: InstagramProps) {
               contato.
             </p>
           </div>
-        </div>
+        </div> */}
       </section>
       <Footer />
     </>
@@ -267,19 +268,22 @@ export const getStaticProps: GetStaticProps<InstagramProps> = async () => {
     const { data: response } = await axios.get<InstagramProps>(
       "https://graph.instagram.com/me/media?fields=id,permalink,media_url,thumbnail_url,caption&access_token=IGQVJVdWRxNFp3Y0JSbV83RVY1a3RwR3pjTEx6d0NIWGNQVTBleVpJclBXdk9GTW1oRzFiZAi1mTTFnS0JVQ0w2M1hvZA1NMcm1mLTJwLXZA0Y2RnYWh5UkN5TGJ6NElxZAlRSbXhZAbzdBckU3Y0tiSEtIagZDZD"
     );
+
+    if (!response.data) throw new Error("Failed to fetch data");
+
     return {
       props: {
-        data: response.data,
+        data: response.data.slice(0, 3),
       },
       revalidate: 60 * 60 * 24, // 24 hours
     };
   } catch (err) {
-    console.error(err, "Failed to fetch data");
+    console.error(err);
     return {
       props: {
         data: [],
       },
-      revalidate: 60, // 1 minute
+      revalidate: 30, // 30 seconds
     };
   }
 };

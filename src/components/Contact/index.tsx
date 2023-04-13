@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const ContactForm = () => {
   return (
-    <div className="flex flex-col gap-4 py-10">
+    <div className="flex flex-col gap-4 py-10 [&>p]:text-center [&>p]:px-4">
       <p>
         Formulário temporariamente indisponível, desculpe pelo inconveniente.
       </p>
