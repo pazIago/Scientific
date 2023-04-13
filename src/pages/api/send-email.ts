@@ -1,11 +1,16 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
 
+// Pode usar a tipagem que sai do form
+//import { FormType } from "@/components/Form";
+
 export default async function SendEmail(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
+    // TODO tem que fazer o cabeçalho aceitar aqueles tipos de arquivo e adicionar ao email
+
     const data: any = req.body; // TODO TEM QUE TIPAR
     const { nome, service, telefone, email, mensagem } = data;
 
@@ -22,6 +27,7 @@ export default async function SendEmail(
       },
     });
 
+    //TODO criar um template para o email adicionando os dados do form
     const mailData = {
       to: "comercial@highlandertech.com.br",
       from: "comercial@highlandertech.com.br",
