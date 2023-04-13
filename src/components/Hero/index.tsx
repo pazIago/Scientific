@@ -1,13 +1,12 @@
 import Image from "next/image";
-import React from "react";
-import HeroIMG from "../../../public/assets/HERO2.webp";
+
 const Hero = () => {
   return (
     <div className="w-full h-[420px] max-sm:h-[200px]">
       <div className="relative flex items-center justify-center h-full">
         <Image
           className="object-cover z-[-1]"
-          src={HeroIMG}
+          src={"/assets/HERO2.webp"}
           alt="hero banner"
           fill
         />

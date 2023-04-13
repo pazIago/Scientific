@@ -1,38 +1,23 @@
 import Frame from "./Frame";
+import type { Post } from "@/pages";
 
-interface instagramPost {
-  id: string;
-  permalink: string;
-  media_url: string;
-  thumbnail_url?: string;
+interface Props {
+  posts: Post[];
 }
 
-async function getStaticProps() {
-  const res = await fetch(
-    "https://graph.instagram.com/me/media?fields=id,permalink,media_url,thumbnail_url,caption&access_token=IGQVJVdWRxNFp3Y0JSbV83RVY1a3RwR3pjTEx6d0NIWGNQVTBleVpJclBXdk9GTW1oRzFiZAi1mTTFnS0JVQ0w2M1hvZA1NMcm1mLTJwLXZA0Y2RnYWh5UkN5TGJ6NElxZAlRSbXhZAbzdBckU3Y0tiSEtIagZDZD"
-  );
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  
-  return res.json();
-}
-
-export default async function InstagramFeed() {
-  const { data } = await getStaticProps();
- 
+export default function InstagramFeed({ posts }: Props) {
   return (
     <div className="flex flex-wrap justify-center w-full">
-      {data
-        .slice(0, 3)
-        .map(({ id, permalink, media_url, thumbnail_url }: instagramPost) => (
-          <Frame
-            key={id}
-            permalink={permalink}
-            media_url={thumbnail_url ? thumbnail_url : media_url}
-          />
-        ))}
+      {posts.length > 0 &&
+        posts
+          .slice(0, 3)
+          .map(({ id, permalink, media_url, thumbnail_url }) => (
+            <Frame
+              key={id}
+              permalink={permalink}
+              media_url={thumbnail_url ? thumbnail_url : media_url}
+            />
+          ))}
     </div>
   );
 }

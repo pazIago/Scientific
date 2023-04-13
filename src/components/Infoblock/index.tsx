@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 
 interface infoBlockProps {
   position: "left" | "right";
-  image: StaticImageData;
+  image: string;
   children: ReactNode;
   title: string;
 }
