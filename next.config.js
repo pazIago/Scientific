@@ -5,9 +5,14 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV !== "development",
   },
-  images: {
-    domains: ["https://scontent.cdninstagram.com", "https://www.instagram.com"],
-  },
+  remotePatterns: [
+    {
+      protocol: "https",
+      hostname: "scontent.cdninstagram.com",
+      port: "https",
+      pathname: "https://www.instagram.com",
+    },
+  ],
 };
 
 module.exports = nextConfig;
