@@ -1,19 +1,18 @@
-import { any } from "prop-types";
-import React, { ReactNode } from "react";
+import type { PropsWithChildren } from "react";
+import Link from "next/link";
 
-interface childrenProps {
-  children: ReactNode;
+interface ChildrenProps {
   link: string;
 }
 
-const SocialIcon = ({ children, link }: childrenProps) => {
+const SocialIcon = ({ children, link }: PropsWithChildren<ChildrenProps>) => {
   return (
-    <a
+    <Link
       className="flex justify-center items-center text-white bg-sciblue h-[34px] w-[34px] hover:scale-90 transition-all"
       href={link}
     >
       {children}
-    </a>
+    </Link>
   );
 };
 

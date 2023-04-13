@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import Link from "next/link";
 
 interface frameProps {
   permalink: string;
@@ -8,14 +8,17 @@ interface frameProps {
 
 const Frame = ({ permalink, media_url }: frameProps) => {
   return (
-    <a href={permalink} className="relative block aspect-square w-full max-w-[368px] min-w-[300px] border-[1px]">
+    <Link
+      href={permalink}
+      className="relative block aspect-square w-full max-w-[368px] min-w-[300px] border-[1px]"
+    >
       <Image
         className="object-cover object-center"
         src={media_url}
         alt=""
         fill
       />
-    </a>
+    </Link>
   );
 };
 

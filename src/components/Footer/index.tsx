@@ -1,9 +1,9 @@
-import React from "react";
 import Logo from "../Global/Logo";
 import SocialIcon from "../Header/SocialIcon";
 import FBSvg from "../Global/facebook";
 import INSvg from "../Global/instagram";
 import LKSvg from "../Global/linkedin";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -40,20 +40,20 @@ const Footer = () => {
           <span className="mb-2 text-white uppercase">
             <strong>Trabalhe Conosco</strong>
           </span>{" "}
-          <a
+          <Link
             className="px-6 py-3 text-center text-white transition-all bg-sciblue min-w-fit hover:scale-105"
             href="mailto:joaobrum@scientific.com.br"
           >
             Mande seu currículo
-          </a>
+          </Link>
         </div>
       </div>
       <div className="mx-auto mt-10 max-w-fit">
         <span className="text-sm text-center text-white block w-full pb-2">
           © Scientific Linguagem. Todos os direitos reservados. Desenvolvido por{" "}
-          <a className="text-sciblue ml-1" href="https://vinceveras.com/">
+          <Link className="text-sciblue ml-1" href="https://vinceveras.com/">
             Vince Veras
-          </a>
+          </Link>
         </span>
       </div>
     </footer>

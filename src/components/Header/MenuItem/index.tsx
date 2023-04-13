@@ -1,18 +1,18 @@
-import React from "react";
+import Link from "next/link";
 
-interface menuItemProps {
+interface MenuItemProps {
   text: string;
   anchor: string;
 }
 
-const MenuItem = ({ text, anchor }: menuItemProps) => {
+const MenuItem = ({ text, anchor }: MenuItemProps) => {
   return (
-    <a
+    <Link
       className="inline-flex justify-center items-center p-4 text-sm transition-all border-b-4 border-b-transparent hover:text-sciblue hover:border-b-4 hover:border-b-sciblue"
       href={anchor}
     >
       {text}
-    </a>
+    </Link>
   );
 };
 
