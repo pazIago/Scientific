@@ -7,7 +7,7 @@ const ContactForm = () => {
         Formulário temporariamente indisponível, desculpe pelo inconveniente.
       </p>
       <p> Clique em um dos botões abaixo para abrir o modelo de e-mail.</p>
-      <div className="flex items-center justify-center gap-8 mt-8 max-md:flex-col">
+      <div className="flex items-center justify-center gap-8 mt-8 text-center max-md:flex-col">
         <Link
           className="px-3 text-lg font-medium text-white bg-sciblue py-[6px] min-w-fit rounded-md w-[320px] hover:scale-105 transition-all"
           href="mailto:artigos@scientific.com.br?subject=Solicitação - Orçamento&body=
