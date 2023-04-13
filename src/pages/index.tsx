@@ -9,7 +9,7 @@ import InfoBlock from "@/components/Infoblock";
 import ContactForm from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Link from "next/link";
-import { Form } from "@/components/Form";
+import { Form } from "@/components/Contact/Form";
 import type { GetStaticProps } from "next";
 import axios from "axios";
 
@@ -237,8 +237,24 @@ export default function Home({ data }: InstagramProps) {
       >
         <Stripe text="Entre em Contato" />
         <div className="text-center max-w-[1140px] mx-auto mt-10 px-4">
-          <ContactForm />
+          <p className="mb-8">
+            Fale conosco para solicitar um orçamento ou contratar algum serviço.
+          </p>
           <Form />
+          <div className="flex flex-col max-w-xl gap-4 mx-auto mt-16 text-xs text-left text-[#54595f] [&_span]:text-sciblue [&_span]:font-semibold">
+            <p>
+              Para <span>ORÇAMENTOS</span>, anexe o arquivo de texto ou informe
+              o número de palavras a serem revisadas, editadas ou traduzidas.
+              Informe ainda se deseja receber orçamento para formatação e
+              submissão e o nome da revista de interesse.
+            </p>
+            <p>
+              Para <span>CONTRATAÇÃO</span>, anexe o arquivo de texto.
+              Entraremos em contato pelo telefone para confirmar detalhes e
+              combinar pagamento e prazo. O projeto será iniciado após esse
+              contato.
+            </p>
+          </div>
         </div>
       </section>
       <Footer />

@@ -1,8 +1,19 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
 
-// Pode usar a tipagem que sai do form
-//import { FormType } from "@/components/Form";
+interface FormType {
+  name: string;
+  message: string;
+  email: string;
+  phone: string;
+  select: string;
+  files: {
+    0: {
+      name: string;
+      type: string;
+    };
+  };
+}
 
 export default async function SendEmail(
   req: NextApiRequest,
@@ -11,29 +22,32 @@ export default async function SendEmail(
   if (req.method === "POST") {
     // TODO tem que fazer o cabeçalho aceitar aqueles tipos de arquivo e adicionar ao email
 
-    const data: any = req.body; // TODO TEM QUE TIPAR
-    const { nome, service, telefone, email, mensagem } = data;
+    const data: FormType = req.body; // TODO TEM QUE TIPAR
+    const { name, message, email, phone, select, files } = data;
 
     const transporter = nodemailer.createTransport({
-      port: 587,
-      host: "smtp.umbler.com",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
-        user: "comercial@highlandertech.com.br",
-        pass: process.env.UMBLER_PASSWORD,
-      },
-      tls: {
-        rejectUnauthorized: true,
-        minVersion: "TLSv1.2",
+        user: "marketing@scientific.com.br",
+        pass: process.env.SMTP_PASSWORD,
       },
     });
 
     //TODO criar um template para o email adicionando os dados do form
     const mailData = {
-      to: "comercial@highlandertech.com.br",
-      from: "comercial@highlandertech.com.br",
-      cc: "giovanifranz151@gmail.com",
-      subject: `Nome: ${nome} / Serviço: ${service}`,
-      html: `Telefone: ${telefone} <br> E-mail: ${email} <br> Mensagem: ${mensagem}`,
+      to: "marketing@scientific.com.br",
+      from: "marketing@scientific.com.br",
+      cc: "iagopaz52@gmail.com, iagopaz@hotmail.com.br",
+      subject: `Solicitação - ${select}`,
+      attachment: [
+        {
+          filename: files[0].name,
+          contentType: files[0].type,
+        },
+      ],
+      html: `De: ${name} <br> Remetente: ${email} <br> telefone: ${phone} <br> Mensagem: <br> ${message}`,
     };
 
     try {
