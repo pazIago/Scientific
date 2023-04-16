@@ -114,7 +114,7 @@ export default function Home({ data }: InstagramProps) {
           </p>
         </div>
       </section>
-      <section
+      {/* <section
         id="insta"
         className="max-w-[1140px] mx-auto my-14 px-4 [&>h2]:pb-8"
       >
@@ -127,7 +127,7 @@ export default function Home({ data }: InstagramProps) {
         >
           <INSvg /> Siga-nos no Instagram
         </Link>
-      </section>
+      </section> */}
       <section
         id="servicos"
         className="pt-40 my-20 -mt-20 max-md:pt-24 max-md:-mt-24"
