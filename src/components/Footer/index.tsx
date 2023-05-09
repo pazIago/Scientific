@@ -27,10 +27,10 @@ const Footer = () => {
             <SocialIcon link="https://www.facebook.com/ScientificLinguagem/">
               <FBSvg />
             </SocialIcon>
-            <SocialIcon link="https://www.facebook.com/ScientificLinguagem/">
+            <SocialIcon link="https://www.instagram.com/scientific_linguagem/">
               <INSvg />
             </SocialIcon>
-            <SocialIcon link="https://www.facebook.com/ScientificLinguagem/">
+            <SocialIcon link="https://www.linkedin.com/company/scientific-linguagem/">
               <LKSvg />
             </SocialIcon>
           </div>
