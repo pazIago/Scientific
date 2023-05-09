@@ -235,27 +235,26 @@ export default function Home({ data }: InstagramProps) {
         className="pt-40 my-20 -mt-20 max-md:pt-24 max-md:-mt-24"
       >
         <Stripe text="Entre em Contato" />
-        <ContactForm />
-        {/* <div className="text-center max-w-[1140px] mx-auto mt-10 px-4">
+        <div className="text-center max-w-[1140px] mx-auto mt-10 px-4">
           <p className="mb-8">
             Fale conosco para solicitar um orçamento ou contratar algum serviço.
           </p>
           <Form />
           <div className="flex flex-col max-w-xl gap-4 mx-auto mt-16 text-xs text-left text-[#54595f] [&_span]:text-sciblue [&_span]:font-semibold">
             <p>
-              Para <span>ORÇAMENTOS</span>, anexe o arquivo de texto ou informe
-              o número de palavras a serem revisadas, editadas ou traduzidas.
-              Informe ainda se deseja receber orçamento para formatação e
-              submissão e o nome da revista de interesse.
+              Para <span>ORÇAMENTOS</span>, informe o número de palavras a serem
+              revisadas, editadas ou traduzidas. Informe ainda se deseja receber
+              orçamento para formatação e submissão e o nome da revista de
+              interesse.
             </p>
-            <p>
+            {/*<p>
               Para <span>CONTRATAÇÃO</span>, anexe o arquivo de texto.
               Entraremos em contato pelo telefone para confirmar detalhes e
               combinar pagamento e prazo. O projeto será iniciado após esse
               contato.
-            </p>
+            </p>  */}
           </div>
-        </div> */}
+        </div>
       </section>
       <Footer />
     </>
@@ -267,7 +266,7 @@ export const getStaticProps: GetStaticProps<InstagramProps> = async () => {
     const { data: response } = await axios.get<InstagramProps>(
       "https://graph.instagram.com/me/media?fields=id,permalink,media_url,thumbnail_url,caption&access_token=IGQVJXMUZAlQkFQbi1vTlBJSFdYOXFHZA2p4UFdVc1pMZAlpDU0U4Q3FUaElxaS1ZAaTZAhTW1JNXNNNVlvOFgxRFA5NHdlU1dVZAGg5ZAm1JRjRrM1J3cFRvSWVYTk1CRmpGYUs5bGRSMHNmZA0hFa1kxTGdWQwZDZD"
     );
-    console.log(response.data);
+
     if (!response.data) throw new Error("Failed to fetch data");
 
     return {

@@ -1,11 +1,22 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCallback } from "react";
+import { useCallback, useId } from "react";
 import { http } from "@/utils/http";
+import { toast, ToastContainer } from "react-toastify";
 import PLANESvg from "../Global/plane";
+import type { ToastOptions } from "react-toastify";
 
-const MAX_FILE_SIZE = 5000000;
+const TOAST_CONFIG: ToastOptions = {
+  position: "top-right",
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: false,
+  draggable: true,
+  progress: undefined,
+};
+
+/*const MAX_FILE_SIZE = 5000000;
 const ACCEPTED_FILE_TYPES = [
   //só aceita esses tipos de imagem mas pode alterar depois
   "image/jpeg",
@@ -19,7 +30,7 @@ const ACCEPTED_FILE_TYPES = [
   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
   "application/vnd.openxmlformats-officedocument.spreadsheetml.template",
   "application/vnd.openxmlformats-officedocument.spreadsheetml.template",
-];
+];*/
 
 export const FormSchema = z.object({
   //TODO: Faça suas regras e mensagems personalizadas
@@ -33,7 +44,7 @@ export const FormSchema = z.object({
     .string()
     .min(10, "Inclua informações sobre o projeto")
     .max(500, "Limite de caracteres: 500"),
-  file: z
+  /*  file: z
     .any()
     .refine((files) => files?.length == 1, "Image is required.")
     .refine(
@@ -46,12 +57,14 @@ export const FormSchema = z.object({
     )
     .transform((files) => files?.[0])
     .optional(),
-  select: z.enum(["Contratação", "Orçamento"]),
+    select: z.enum(["Contratação", "Orçamento"]),*/
 });
 
 export type FormType = z.infer<typeof FormSchema>;
 
 export function Form() {
+  const toastLoadingId = useId();
+  const toastErrorId = useId();
   const {
     register,
     reset,
@@ -66,65 +79,116 @@ export function Form() {
       email: "",
       phone: "",
       message: "",
-      file: null,
+      // file: null,
     },
   });
-  console.log(JSON.stringify(watch(), null, 2));
+
+  const validateForm = useCallback(() => {
+    const errorToast = (message: string) =>
+      toast(message, {
+        ...TOAST_CONFIG,
+        autoClose: 1500,
+        type: toast.TYPE.WARNING,
+        toastId: toastErrorId,
+      });
+
+    if (errors.name?.message) {
+      errorToast(errors.name.message);
+    }
+    if (errors.email?.message) {
+      errorToast(errors.email.message);
+    }
+    if (errors.phone?.message) {
+      errorToast(errors.phone.message);
+    }
+    if (errors.message?.message) {
+      errorToast(errors.message.message);
+    }
+  }, [errors.email, errors.message, errors.name, errors.phone, toastErrorId]);
 
   const onSubmit = useCallback(
     async (data: FormType) => {
-      console.log(data.file);
-
       try {
+        const loadingToast = () =>
+          toast("E-mail já está sendo enviado!", {
+            ...TOAST_CONFIG,
+            autoClose: 12000,
+            type: toast.TYPE.INFO,
+            toastId: toastLoadingId,
+          });
+        loadingToast();
         await http.post("send-email", data);
+        toast.update(toastLoadingId, {
+          ...TOAST_CONFIG,
+          render: "E-mail enviado com Sucesso!",
+          type: toast.TYPE.SUCCESS,
+          autoClose: 2500,
+        });
         reset();
-        //TODO: adicionar um toast de sucesso
       } catch (error) {
-        //TODO: adicionar um toast de erro
+        toast.update(toastLoadingId, {
+          ...TOAST_CONFIG,
+          render: "Erro ao enviar E-mail!",
+          type: toast.TYPE.ERROR,
+          autoClose: 2500,
+        });
         console.log(error);
       }
     },
-    [reset]
+    [reset, toastLoadingId]
   );
 
   return (
-    <form
-      className="max-w-xl mx-auto flex flex-col gap-1 [&>div]:flex [&>div]:flex-col [&_span]:text-red-400 [&_span]:text-left [&_span]:block [&_span]:h-[20px] [&_span]:text-sm [&_input:not([type='file'])]:border [&_input:not([type='file'])]:px-4 [&_input:not([type='file'])]:outline-none [&_input:not([type='file'])]:py-2 [&_textarea]:border [&_textarea]:outline-none"
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <div>
-        <input
-          className="transition hover:border-sciblue focus:ring-sciblue focus:ring-1 focus:border-sciblue"
-          type="text"
-          placeholder="Nome"
-          id="name"
-          {...register("name")}
-        />
-        <span>{errors.name?.message}</span>
-      </div>
+    <>
+      <ToastContainer
+        className="z-50"
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <form
+        className="max-w-xl mx-auto flex flex-col gap-1 [&>div]:flex [&>div]:flex-col [&_span]:text-red-400 [&_span]:text-left [&_span]:block [&_span]:h-[20px] [&_span]:text-sm [&_input:not([type='file'])]:border [&_input:not([type='file'])]:px-4 [&_input:not([type='file'])]:outline-none [&_input:not([type='file'])]:py-2 [&_textarea]:border [&_textarea]:outline-none"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <div>
+          <input
+            className="transition hover:border-sciblue focus:ring-sciblue focus:ring-1 focus:border-sciblue"
+            type="text"
+            placeholder="Nome"
+            id="name"
+            {...register("name")}
+          />
+          <span>{errors.name?.message}</span>
+        </div>
 
-      <div>
-        <input
-          className="transition focus:ring-sciblue focus:ring-1 focus:border-sciblue hover:border-sciblue"
-          type="email"
-          placeholder="Email"
-          {...register("email")}
-        />
-        <span>{errors.email?.message}</span>
-      </div>
+        <div>
+          <input
+            className="transition focus:ring-sciblue focus:ring-1 focus:border-sciblue hover:border-sciblue"
+            type="email"
+            placeholder="Email"
+            {...register("email")}
+          />
+          <span>{errors.email?.message}</span>
+        </div>
 
-      <div>
-        <input
-          className="transition focus:ring-sciblue focus:ring-1 focus:border-sciblue hover:border-sciblue"
-          type="phone"
-          placeholder="Telefone"
-          {...register("phone")}
-        />
-        <span>{errors.phone?.message}</span>
-      </div>
-      <div>
-        <div className="grid items-center grid-cols-2 gap-6 max-sm:gap-0 max-sm:grid-cols-1 justify-items-start">
-          <div className="w-full">
+        <div>
+          <input
+            className="transition focus:ring-sciblue focus:ring-1 focus:border-sciblue hover:border-sciblue"
+            type="phone"
+            placeholder="Telefone"
+            {...register("phone")}
+          />
+          <span>{errors.phone?.message}</span>
+        </div>
+        <div>
+          <div className="grid items-center grid-cols-2 gap-6 max-sm:gap-0 max-sm:grid-cols-1 justify-items-start">
+            {/*   <div className="w-full">
             <select
               className="w-full py-2 pl-4 pr-4 transition border outline-none hover:border-sciblue focus:ring-sciblue focus:ring-1 focus:border-sciblue"
               {...register("select")}
@@ -133,33 +197,28 @@ export function Form() {
               <option value="Orçamento">Orçamento</option>
             </select>
             <span>{errors.select?.message}</span>
-          </div>
-          <div className="max-w-xs">
-            <input
-              className="file:bg-sciblue file:hover:scale-95 transition text-sm file:border-none file:text-sm file:text-white file:px-3 file:py-[6px] mb-5 flex flex-col flex-wrap max-w-[276px] max-sm:max-w-[300px]"
-              type="file"
-              {...register("file")}
-            />
+          </div> */}
           </div>
         </div>
-      </div>
 
-      <div>
-        <textarea
-          className="px-4 py-2 transition focus:ring-sciblue focus:ring-1 focus:border-sciblue hover:border-sciblue"
-          placeholder="Mensagem"
-          {...register("message")}
-        />
-        <span>{errors.message?.message}</span>
-      </div>
+        <div>
+          <textarea
+            className="px-4 py-2 transition focus:ring-sciblue focus:ring-1 focus:border-sciblue hover:border-sciblue"
+            placeholder="Mensagem"
+            {...register("message")}
+          />
+          <span>{errors.message?.message}</span>
+        </div>
 
-      <button
-        type="submit"
-        className="flex items-center gap-2 px-6 py-3 mt-4 font-medium text-white w-fit bg-sciblue"
-        disabled={isSubmitting}
-      >
-        <PLANESvg /> Enviar
-      </button>
-    </form>
+        <button
+          type="submit"
+          className="flex items-center gap-2 px-6 py-3 mt-4 font-medium text-white w-fit bg-sciblue"
+          disabled={isSubmitting}
+          onClick={validateForm}
+        >
+          <PLANESvg /> Enviar
+        </button>
+      </form>
+    </>
   );
 }

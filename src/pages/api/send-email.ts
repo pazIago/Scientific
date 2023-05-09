@@ -1,18 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import nodemailer from "nodemailer";
+import nodemailer, { SendMailOptions } from "nodemailer";
 
 interface FormType {
   name: string;
   message: string;
   email: string;
   phone: string;
-  select: string;
+  /*select: string;
   files: {
     0: {
       name: string;
       type: string;
     };
-  };
+  };*/
 }
 
 export default async function SendEmail(
@@ -20,10 +20,8 @@ export default async function SendEmail(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-    // TODO tem que fazer o cabeçalho aceitar aqueles tipos de arquivo e adicionar ao email
-
-    const data: FormType = req.body; // TODO TEM QUE TIPAR
-    const { name, message, email, phone, select, files } = data;
+    const data: FormType = req.body;
+    const { name, message, email, phone } = data;
 
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
@@ -35,18 +33,17 @@ export default async function SendEmail(
       },
     });
 
-    //TODO criar um template para o email adicionando os dados do form
-    const mailData = {
-      to: "marketing@scientific.com.br",
-      from: "marketing@scientific.com.br",
-      cc: "iagopaz52@gmail.com, iagopaz@hotmail.com.br",
-      subject: `Solicitação - ${select}`,
-      attachment: [
+    const mailData: SendMailOptions = {
+      to: "artigos@scientific.com.br",
+      cc: "marketing@scientific.com.br",
+      subject: `Solicitação - Orçamento`,
+      replyTo: email,
+      /*attachment: [
         {
           filename: files[0].name,
           contentType: files[0].type,
         },
-      ],
+      ],*/
       html: `De: ${name} <br> Remetente: ${email} <br> telefone: ${phone} <br> Mensagem: <br> ${message}`,
     };
 
