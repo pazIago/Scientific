@@ -34,8 +34,9 @@ export default async function SendEmail(
     });
 
     const mailData: SendMailOptions = {
-      to: "artigos@scientific.com.br",
-      cc: "marketing@scientific.com.br",
+      to: "marketing@scientific.com.br",
+      from: "marketing@scientific.com.br",
+      cc: "iagopaz@hotmail.com.br",
       subject: `Solicitação - Orçamento`,
       replyTo: email,
       /*attachment: [
