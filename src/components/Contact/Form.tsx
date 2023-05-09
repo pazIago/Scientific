@@ -131,8 +131,8 @@ export function Form() {
           render: "Erro ao enviar E-mail!",
           type: toast.TYPE.ERROR,
           autoClose: 2500,
-        }),
-          console.log(error);
+        });
+        console.log(error);
       }
     },
     [reset, toastLoadingId]
