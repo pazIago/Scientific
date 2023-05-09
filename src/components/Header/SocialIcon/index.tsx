@@ -10,6 +10,8 @@ const SocialIcon = ({ children, link }: PropsWithChildren<ChildrenProps>) => {
     <Link
       className="flex justify-center items-center text-white bg-sciblue h-[34px] w-[34px] hover:scale-90 transition-all"
       href={link}
+      passHref
+      target="_blank"
     >
       {children}
     </Link>
