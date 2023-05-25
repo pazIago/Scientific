@@ -9,13 +9,21 @@ export default function InstagramFeed({ posts }: Props) {
   return (
     <div className="flex flex-wrap justify-center w-full">
       {posts.length > 0 &&
-        posts.map(({ id, permalink, media_url, thumbnail_url }) => (
-          <Frame
-            key={id}
-            permalink={permalink}
-            media_url={thumbnail_url ? thumbnail_url : media_url}
-          />
-        ))}
+        posts.map(({ id, permalink, media_url, thumbnail_url }) =>
+          id === "17991624400828214" ? (
+            <Frame
+              key={id}
+              permalink={permalink}
+              media_url={"/assets/video.gif"}
+            />
+          ) : (
+            <Frame
+              key={id}
+              permalink={permalink}
+              media_url={thumbnail_url ? thumbnail_url : media_url}
+            />
+          )
+        )}
     </div>
   );
 }
