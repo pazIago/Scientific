@@ -42,16 +42,16 @@ const Footer = () => {
           </span>{" "}
           <Link
             className="px-6 py-3 text-center text-white transition-all bg-sciblue min-w-fit hover:scale-105"
-            href="mailto:joaobrum@scientific.com.br"
+            href="mailto:maristela@scientific.com.br"
           >
             Mande seu currículo
           </Link>
         </div>
       </div>
       <div className="mx-auto mt-10 max-w-fit">
-        <span className="text-sm text-center text-white block w-full pb-2">
+        <span className="block w-full pb-2 text-sm text-center text-white">
           © Scientific Linguagem. Todos os direitos reservados. Desenvolvido por{" "}
-          <Link className="text-sciblue ml-1" href="https://vinceveras.com/">
+          <Link className="ml-1 text-sciblue" href="https://vinceveras.com/">
             Vince Veras
           </Link>
         </span>
