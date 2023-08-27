@@ -264,7 +264,7 @@ export default function Home({ data }: InstagramProps) {
 export const getStaticProps: GetStaticProps<InstagramProps> = async () => {
   try {
     const { data: response } = await axios.get<InstagramProps>(
-      "https://graph.instagram.com/me/media?fields=id,permalink,media_url,thumbnail_url,caption&access_token=IGQVJYMFR3dEdiQ2tIQ2t4NWthRGlhY3RhN0wyRy1Pd3FwRWluMDhmdU5HcFVvLUxDQmN3WkVVZAnNJT3RkdDd1Y0s0TmVIS0d0bm52WnZA2TW4tRmZA2b2d6S3lnRVM2YWJ5STVvTTNoTjRha1hwTmJBZAAZDZD"
+      "https://graph.instagram.com/me/media?fields=id,permalink,media_url,thumbnail_url,caption&access_token=IGQWRPWHQ3cFZAuMzVJQUZAtZA0RuNFQtSzJuMjJwR2RNWHI5S1YyczduSFpWSW5qRFVYU2x6N1Q5Tm9fVmVoZAVdmTUszWnFZAN2E2QlBueXlkYVlPREdjVTN2RjJvUXFTNlJDVnZAZAZAHBocURjVDdVX18zaEd2ZAll2Q1kZD"
     );
 
     if (!response.data) throw new Error("Failed to fetch data");
