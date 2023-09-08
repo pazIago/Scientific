@@ -2,6 +2,7 @@
 
 const nextConfig = {
   swcMinify: true,
+  distDir:'build',
   compiler: {
     removeConsole: process.env.NODE_ENV !== "development",
   },

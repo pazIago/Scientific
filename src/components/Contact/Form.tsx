@@ -16,22 +16,6 @@ const TOAST_CONFIG: ToastOptions = {
   progress: undefined,
 };
 
-/*const MAX_FILE_SIZE = 5000000;
-const ACCEPTED_FILE_TYPES = [
-  //só aceita esses tipos de imagem mas pode alterar depois
-  "image/jpeg",
-  "image/jpg",
-  "image/png",
-  "image/webp",
-  "application/pdf",
-  "application/msword",
-  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-  "application/vnd.ms-excel",
-  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-  "application/vnd.openxmlformats-officedocument.spreadsheetml.template",
-  "application/vnd.openxmlformats-officedocument.spreadsheetml.template",
-];*/
-
 export const FormSchema = z.object({
   //TODO: Faça suas regras e mensagems personalizadas
   name: z.string().min(3, "Mínimo de três caracteres").max(100), //essa string é a mensagem de erro
