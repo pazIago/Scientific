@@ -13,7 +13,7 @@ const InfoBlock = ({ position, image, children, title }: infoBlockProps) => {
     case "left":
       return (
         <div className="flex gap-8 max-md:flex-col">
-          <div className="relative flex items-center justify-center w-full h-full min-h-[404px] max-md:min-h-[280px]">
+          <div className="relative flex items-center text-center justify-center w-full h-full min-h-[404px] max-md:min-h-[280px]">
             <h2 className="text-5xl font-semibold text-white uppercase max-md:text-[40px]">
               {title}
             </h2>
@@ -32,7 +32,7 @@ const InfoBlock = ({ position, image, children, title }: infoBlockProps) => {
             {children}
           </div>
           <div className="relative flex items-center justify-center w-full h-full min-h-[404px] max-md:min-h-[280px]">
-            <h2 className="text-5xl font-semibold text-white uppercase max-md:text-[40px]">
+            <h2 className="text-5xl font-semibold text-center text-white uppercase max-md:text-[40px]">
               {title}
             </h2>
             <Image className="object-cover z-[-1]" src={image} fill alt="" />
