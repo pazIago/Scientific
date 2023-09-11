@@ -59,7 +59,7 @@ export default function Home({ data }: InstagramProps) {
           />
         </div>
         <div className="pt-10 pl-8 pr-4 max-md:px-4 [&>h2]:mb-8">
-          <Title>{isBr ? "Sobre a Scientific" : "About Scientific"}</Title>
+          <Title>{isBr ? "Sobre a Scientific" : "About Us"}</Title>
           {isBr ? (
             <p>
               A <strong>Scientific</strong> atua desde 1998 na revisão,

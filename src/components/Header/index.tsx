@@ -69,13 +69,13 @@ const Header = ({ isBr, setIsBr }: { isBr: boolean; setIsBr: Function }) => {
               className="hover:bg-slate-200"
               onClick={() => setIsBr(false)}
             >
-              US
+              EN
             </button>
             <button
               className="hover:bg-slate-200"
               onClick={() => setIsBr(true)}
             >
-              BR
+              PT
             </button>
           </nav>
           <button
@@ -111,10 +111,10 @@ const Header = ({ isBr, setIsBr }: { isBr: boolean; setIsBr: Function }) => {
       </div>
       <nav className="fixed grid bg-white rounded-xl right-5 top-40 [&>button]:p-2 overflow-hidden max-sm:hidden shadow-md">
         <button className="hover:bg-slate-200" onClick={() => handleLang("EN")}>
-          US
+          EN
         </button>
         <button className="hover:bg-slate-200" onClick={() => handleLang("BR")}>
-          BR
+          PT
         </button>
       </nav>
     </header>
