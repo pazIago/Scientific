@@ -16,19 +16,26 @@ const TOAST_CONFIG: ToastOptions = {
   progress: undefined,
 };
 
-export const FormSchema = z.object({
-  name: z.string().min(3, "Mínimo de três caracteres").max(100), //essa string é a mensagem de erro
-  email: z.string().email("Email inválido"),
-  phone: z.string().min(11, "Digite apenas os números, com DDD incluso"),
-  message: z
-    .string()
-    .min(10, "Inclua informações sobre o projeto")
-    .max(500, "Limite de caracteres: 500"),
-});
-
-export type FormType = z.infer<typeof FormSchema>;
-
 export function Form({ isBr }: { isBr: boolean }) {
+  const [errorMessages, setErrorMessages] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: { min: "", max: "" },
+  });
+
+  const FormSchema = z.object({
+    name: z.string().min(3, errorMessages.name).max(100), //essa string é a mensagem de erro
+    email: z.string().email(errorMessages.email),
+    phone: z.string().min(11, errorMessages.phone),
+    message: z
+      .string()
+      .min(10, errorMessages.message.min)
+      .max(500, errorMessages.message.max),
+  });
+
+  type FormType = z.infer<typeof FormSchema>;
+
   const toastLoadingId = useId();
   const toastErrorId = useId();
   const {
@@ -54,26 +61,6 @@ export function Form({ isBr }: { isBr: boolean }) {
     success: "E-mail enviado com Sucesso!",
     error: "Erro ao enviar E-mail!",
   });
-
-
-  useEffect(() => {
-    function setMessagesLang() {
-      setToastMessage(
-        isBr === true
-          ? {
-              sending: "E-mail já está sendo enviado!",
-              success: "E-mail enviado com Sucesso!",
-              error: "Erro ao enviar E-mail!",
-            }
-          : {
-              sending: "Email is being submitted!",
-              success: "Email sent!",
-              error: "Email could not be sent!",
-            }
-      );
-    }
-    setMessagesLang();
-  }, [isBr]);
 
   const validateForm = useCallback(() => {
     const errorToast = (message: string) =>
@@ -129,6 +116,50 @@ export function Form({ isBr }: { isBr: boolean }) {
     },
     [reset, toastLoadingId, toastMessage]
   );
+
+  useEffect(() => {
+    function setMessagesLang() {
+      setToastMessage(
+        isBr === true
+          ? {
+              sending: "E-mail já está sendo enviado!",
+              success: "E-mail enviado com Sucesso!",
+              error: "Erro ao enviar E-mail!",
+            }
+          : {
+              sending: "Email is being submitted!",
+              success: "Email sent!",
+              error: "Email could not be sent!",
+            }
+      );
+    }
+    setMessagesLang();
+
+    function setTipsMessages() {
+      setErrorMessages(
+        isBr === true
+          ? {
+              name: "Mínimo de três caracteres",
+              email: "Email inválido",
+              phone: "Digite apenas os números, com DDD incluso",
+              message: {
+                min: "Inclua informações sobre o projeto",
+                max: "Limite de caracteres: 500",
+              },
+            }
+          : {
+              name: "Please type at least 3 characters",
+              email: "Please type a valid email",
+              phone: "Please use numbers only",
+              message: {
+                min: "Please add some information about the project",
+                max: "character limit: 500",
+              },
+            }
+      );
+    }
+    setTipsMessages();
+  }, [isBr]);
 
   return (
     <>
