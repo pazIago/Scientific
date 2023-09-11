@@ -5,7 +5,7 @@ import INSvg from "../Global/instagram";
 import LKSvg from "../Global/linkedin";
 import Link from "next/link";
 
-const Footer = () => {
+const Footer = ({ isBr }: { isBr: boolean }) => {
   return (
     <footer className="bg-[#395962]">
       <div className="max-w-[1140px] mx-auto px-4 py-16 flex flex-wrap max-md:grid max-md:gap-6 max-md:justify-center justify-between">
@@ -14,14 +14,24 @@ const Footer = () => {
             <Logo className="object-cover" color="pb" />
           </div>
           <span>Rua João Abbot, 109</span>
-          <span>Cep 90460-150 - Porto Alegre - RS</span>
           <span>
-            <strong>Telefone: (51) 3012.0575 / (51) 99977.3601</strong>
+            {isBr ? (
+              <>Cep 90460-150 – Porto Alegre – RS</>
+            ) : (
+              <>CEP 90460-150 – Porto Alegre, RS – Brazil</>
+            )}
+          </span>
+          <span>
+            <strong>
+              {isBr
+                ? "Telefone: (51) 3012.0575 / (51) 99977.3601"
+                : "Phone: (+55-51) 3012.0575 /(51) 99977.3601"}
+            </strong>
           </span>
         </div>
         <div className="flex flex-col items-center justify-start">
           <span className="mb-2 text-white uppercase">
-            <strong>Siga a Scientific</strong>
+            <strong>{isBr ? "Siga a Scientific" : "Follow us"}</strong>
           </span>
           <div className="flex justify-between gap-2">
             <SocialIcon link="https://www.facebook.com/ScientificLinguagem/">
@@ -38,19 +48,22 @@ const Footer = () => {
         <div className="flex flex-col items-center">
           {" "}
           <span className="mb-2 text-white uppercase">
-            <strong>Trabalhe Conosco</strong>
+            <strong>{isBr ? "Trabalhe conosco" : "Work with us"}</strong>
           </span>{" "}
           <Link
             className="px-6 py-3 text-center text-white transition-all bg-sciblue min-w-fit hover:scale-105"
             href="mailto:maristela@scientific.com.br"
           >
-            Mande seu currículo
+            {isBr ? "Mande seu currículo" : "Submit your resume"}
           </Link>
         </div>
       </div>
       <div className="mx-auto mt-10 max-w-fit">
         <span className="block w-full pb-2 text-sm text-center text-white">
-          © Scientific Linguagem. Todos os direitos reservados. Desenvolvido por{" "}
+          ©{" "}
+          {isBr
+            ? "Scientific Linguagem. Todos os direitos reservados. Desenvolvido por"
+            : "Scientific Linguagem. All rights reserved. Developed by"}{" "}
           <Link className="ml-1 text-sciblue" href="https://vinceveras.com/">
             Vince Veras
           </Link>
