@@ -28,8 +28,13 @@ export default function Home({ data }: InstagramProps) {
   const [isBr, setIsBr] = useState<boolean>(false);
 
   useEffect(() => {
-    const lang = navigator.language;
-    lang == "pt-BR" ? setIsBr(true) : setIsBr(false);
+    const prefLang = localStorage.getItem("prefLang");
+    if (prefLang == "BR") {
+      setIsBr(true);
+    } else {
+      const lang = navigator.language;
+      lang == "pt-BR" ? setIsBr(true) : setIsBr(false);
+    }
   }, []);
 
   return (
