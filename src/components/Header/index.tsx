@@ -16,11 +16,18 @@ const Header = ({ isBr, setIsBr }: { isBr: boolean; setIsBr: Function }) => {
     } else {
       setShowMenu(false);
     }
-    console.log(showMenu);
     setTimeout(() => {
       setShowMenu(false);
-      console.log(showMenu);
     }, 5000);
+  }
+
+  function handleLang(language: string) {
+    if (language == "BR") {
+      setIsBr(true);
+      localStorage.setItem("prefLang", language);
+    } else {
+      setIsBr(false), localStorage.setItem("prefLang", language);
+    }
   }
 
   return (
@@ -103,10 +110,10 @@ const Header = ({ isBr, setIsBr }: { isBr: boolean; setIsBr: Function }) => {
         </div>
       </div>
       <nav className="fixed grid bg-white rounded-xl right-5 top-40 [&>button]:p-2 overflow-hidden max-sm:hidden shadow-md">
-        <button className="hover:bg-slate-200" onClick={() => setIsBr(false)}>
+        <button className="hover:bg-slate-200" onClick={() => handleLang("EN")}>
           US
         </button>
-        <button className="hover:bg-slate-200" onClick={() => setIsBr(true)}>
+        <button className="hover:bg-slate-200" onClick={() => handleLang("BR")}>
           BR
         </button>
       </nav>

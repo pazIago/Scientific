@@ -55,7 +55,6 @@ export function Form({ isBr }: { isBr: boolean }) {
     error: "Erro ao enviar E-mail!",
   });
 
-  console.log(toastMessage);
 
   useEffect(() => {
     function setMessagesLang() {
