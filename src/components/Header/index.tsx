@@ -85,7 +85,7 @@ const Header = ({ isBr, setIsBr }: { isBr: boolean; setIsBr: Function }) => {
                 text={isBr ? "Serviços" : "What we do"}
               />
               <MenuItem anchor="#contato" text={isBr ? "Contato" : "Contact"} />
-              <ul className="flex gap-3 px-2 pb-2">
+              <ul className="flex gap-3 px-2 py-2">
                 <SocialIcon link="https://www.facebook.com/ScientificLinguagem/?locale=pt_BR">
                   <FBSvg />
                 </SocialIcon>
