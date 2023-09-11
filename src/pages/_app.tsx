@@ -16,6 +16,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <main className={montserrat.className}>
         <Component {...pageProps} />
         <Analytics />
+        
       </main>
     </>
   );
