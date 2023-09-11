@@ -33,7 +33,12 @@ export default function Home({ data }: InstagramProps) {
       setIsBr(true);
     } else {
       const lang = navigator.language;
-      lang == "pt-BR" ? setIsBr(true) : setIsBr(false);
+      if (lang == "pt-BR") {
+        setIsBr(true);
+        localStorage.setItem("prefLang", "BR");
+      } else {
+        setIsBr(false), localStorage.setItem("prefLang", "EN");
+      }
     }
   }, []);
 
