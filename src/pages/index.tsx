@@ -12,6 +12,7 @@ import { Form } from "@/components/Contact/Form";
 import type { GetStaticProps } from "next";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import NewForm from "@/components/Contact/NewForm";
 
 export type Post = {
   id: string;
@@ -445,7 +446,8 @@ export default function Home({ data }: InstagramProps) {
               </>
             )}
           </p>
-          <Form isBr={isBr} />
+          {/* <Form isBr={isBr} /> */}
+          <NewForm />
           <div className="flex flex-col max-w-xl gap-4 mx-auto mt-16 text-xs text-left text-[#54595f] [&_span]:text-sciblue [&_span]:font-semibold">
             {isBr ? (
               <p>
