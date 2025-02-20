@@ -226,7 +226,7 @@ export default function Home({ data }: InstagramProps) {
       </section>
       <section
         id="insta"
-        className="max-w-[1140px] mx-auto my-14 px-4 [&>h2]:pb-8"
+        className="max-w-[1140px] mx-auto my-14 px-8 [&>h2]:pb-8 hidden"
       >
         <Title hasDetail> {isBr ? "Últimas" : "News"}</Title>
 
