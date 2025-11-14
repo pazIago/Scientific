@@ -45,6 +45,9 @@ export default function Home({ data }: InstagramProps) {
   return (
     <>
       <Header isBr={isBr} setIsBr={setIsBr} />
+      <div className="bg-sciblue text-white p-4 font-medium text-center">
+          Informamos que a Scientific estará de recesso de 24/12/25 a 04/01/25..
+        </div>
       <Hero isBr={isBr} />
       <section
         className="max-w-[1140px] mx-auto max-md:pt-24 max-md:-mt-24 my-20 -mt-20 pt-40 grid grid-cols-2 max-md:grid-cols-1 gap-8 max-md:gap-0"
@@ -58,6 +61,7 @@ export default function Home({ data }: InstagramProps) {
             alt=""
           />
         </div>
+        
         <div className="pt-10 pl-8 pr-4 max-md:px-4 [&>h2]:mb-8">
           <Title>{isBr ? "Sobre a Scientific" : "About Us"}</Title>
           {isBr ? (
